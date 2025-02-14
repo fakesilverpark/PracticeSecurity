@@ -1,12 +1,18 @@
 package com.example.practicesecurity.controller;
 
 import com.example.practicesecurity.dto.JoinDTO;
+import com.example.practicesecurity.service.JoinService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class JoinController {
+
+    private final JoinService joinService;
 
     @GetMapping("/join")
     public String joinP() {
@@ -18,6 +24,8 @@ public class JoinController {
 
         System.out.println("username: " + joinDTO.getUsername());
         System.out.println("password: " + joinDTO.getPassword());
+
+        joinService.joinProcess(joinDTO);
 
         return "redirect:/login";
     }
