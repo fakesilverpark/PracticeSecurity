@@ -19,6 +19,7 @@ public class JoinService {
         //db 에 이미 동일한 username 을 가진 회원이 존재하는지 검정하는 메서드가 필요함
         boolean isUserExists = userRepository.existsByUsername(joinDTO.getUsername());
         if (isUserExists){
+            System.out.println("User already exists");
             return;
         }
 
