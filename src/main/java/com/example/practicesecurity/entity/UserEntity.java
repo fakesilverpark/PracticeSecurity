@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 public class UserEntity {
 
-    @Id
+    @Id // Entity 에 필수적
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
