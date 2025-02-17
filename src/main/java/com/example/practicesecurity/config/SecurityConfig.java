@@ -18,6 +18,16 @@ public class SecurityConfig {
     }
 
     @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+
+        http
+                .sessionManagement((auth) -> auth
+                        .sessionFixation().changeSessionId());
+
+        return http.build();
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
         // 인가 작업
