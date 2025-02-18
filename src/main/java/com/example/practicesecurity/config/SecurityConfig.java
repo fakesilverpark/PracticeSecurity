@@ -18,16 +18,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-
-        http
-                .sessionManagement((auth) -> auth
-                        .sessionFixation().changeSessionId());
-
-        return http.build();
-    }
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
         // 인가 작업
@@ -61,6 +51,9 @@ public class SecurityConfig {
                         // false : 초과시 기존 세션 하나 삭제 (큐방식)
                         .maxSessionsPreventsLogin(true));
 
+        http
+                .sessionManagement((auth) -> auth
+                        .sessionFixation().changeSessionId());
 
         return http.build();
     }
