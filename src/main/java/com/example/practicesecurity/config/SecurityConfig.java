@@ -2,6 +2,7 @@ package com.example.practicesecurity.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -35,11 +36,17 @@ public class SecurityConfig {
 
 
         // 로그인 폼 작업
+        /*
         http
                 .formLogin((auth) -> auth.loginPage("/login")
                         .loginProcessingUrl("/loginProc")
                         .permitAll()
                 );
+         */
+
+        // http basic 방식으로 로그인 기능 구현
+        http
+                .httpBasic(Customizer.withDefaults());
 
         // http
         //        .csrf((auth) -> auth.disable()); // csrf 보호를 비활성화
@@ -69,6 +76,7 @@ public class SecurityConfig {
     }
 
     // InMemory 방식 유저 정보 저장
+    /*
     @Bean
     public UserDetailsService userDetailsService() {
 
@@ -86,4 +94,5 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(user1, user2);
     }
+    */
 }
