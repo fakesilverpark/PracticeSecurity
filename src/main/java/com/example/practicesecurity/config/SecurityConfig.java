@@ -37,10 +37,8 @@ public class SecurityConfig {
                         .permitAll()
                 );
 
-        // 개발환경에서는 csrf 공격이 들어오면 무방비 상태로 동작됨 (disable)
-        // 배포 환경에서는 csrf 공격방지를 위해 disable 설정을 제거하고 추가적인 설정을 진행해야함
         // http
-        //        .csrf((auth) -> auth.disable());
+        //        .csrf((auth) -> auth.disable()); // csrf 보호를 비활성화
 
         http
                 .sessionManagement((auth) -> auth
