@@ -43,8 +43,9 @@ public class SecurityConfig {
         http
                 .sessionManagement((auth) -> auth
 
+                        // 다중 로그인 설정
                         // 하나의 아이디에서 최대로 허용헐 수 있는 동시 접속 중복 로그인 설정
-                        .maximumSessions(1)
+                        .maximumSessions(1) // 정수만
 
                         // 위의 값을 초과하면 어떻게 대응할지
                         // true : 초과시 새로운 로그인 차단
@@ -52,6 +53,7 @@ public class SecurityConfig {
                         .maxSessionsPreventsLogin(true));
 
         http
+                // 세션 고정 보호 설정 (세션 고정 공격 막기위해서)
                 .sessionManagement((auth) -> auth
                         .sessionFixation().changeSessionId());
 
